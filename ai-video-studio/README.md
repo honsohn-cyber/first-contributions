@@ -83,13 +83,49 @@ Für einen Produktions-Build des Frontends:
 
 ```bash
 cd client
-npm run build   # erzeugt client/dist, kann von jedem statischen Webserver ausgeliefert werden
+npm run build   # erzeugt client/dist
 ```
+
+Existiert `client/dist`, liefert der Server (`server/src/index.js`) das gebaute Frontend
+automatisch selbst mit aus — dann läuft die komplette App (Oberfläche + API) über einen
+einzigen Port. Das ist die Basis für den Docker-Container unten.
+
+## Online stellen (öffentlicher Link, z. B. fürs iPhone)
+
+Lokal läuft die App nur auf deinem eigenen Rechner unter `localhost` — auf dem iPhone
+erreichbar ist sie erst, wenn sie öffentlich gehostet wird. Das geht komplett über den
+Browser, ganz ohne Terminal, z. B. kostenlos mit [Render](https://render.com):
+
+1. Auf [render.com](https://dashboard.render.com/register) mit dem GitHub-Account anmelden
+   (kein Terminal, kein Kreditkarte nötig für den kostenlosen Plan).
+2. Im Dashboard **„New +" → „Web Service"**.
+3. **„Build and deploy from a Git repository"** wählen, GitHub verbinden und das Repository
+   `first-contributions` auswählen.
+4. Einstellungen:
+   - **Branch:** `claude/ai-video-generation-website-pdarmj` (oder `main`, sobald gemerged)
+   - **Root Directory:** `ai-video-studio`
+   - **Runtime:** Docker (wird automatisch erkannt, sobald das `Dockerfile` in diesem
+     Ordner gefunden wird)
+   - **Instance Type:** Free
+5. Optional unter „Environment" die Keys `ELEVENLABS_API_KEY` und/oder `OPENAI_API_KEY`
+   eintragen, wenn KI-Stimmen/-Bilder gewünscht sind. Ohne Keys läuft der Offline-Modus.
+6. **„Deploy Web Service"** klicken. Der erste Build dauert einige Minuten (ffmpeg,
+   espeak-ng und das Frontend werden im Container installiert/gebaut).
+7. Nach erfolgreichem Deploy zeigt Render eine URL wie
+   `https://ai-video-studio-xxxx.onrender.com` — die im Safari-Browser auf dem iPhone
+   öffnen. Über „Zum Home-Bildschirm" lässt sie sich wie eine App anheften.
+
+**Hinweise zum kostenlosen Plan:** Der Dienst schläft nach ca. 15 Minuten Inaktivität ein;
+der erste Aufruf danach braucht ~30–60 Sekunden zum Aufwachen. Der Speicherplatz ist
+flüchtig — bei einem Neustart/Redeploy gehen bereits erzeugte Videos verloren. Für
+längere Skripte oder viele gleichzeitige Nutzer:innen kann der kostenlose Plan (512 MB RAM)
+beim Video-Rendern an seine Grenzen kommen; ein bezahlter Plan ist dann spürbar schneller.
 
 ## Projektstruktur
 
 ```
 ai-video-studio/
+├── Dockerfile               Single-Container-Build (Client-Build + ffmpeg/espeak-ng + Server)
 ├── server/                  Node/Express-Backend
 │   ├── src/
 │   │   ├── lib/             Script-Parser, ffmpeg-Runner, Job-Store, Auflösungen
