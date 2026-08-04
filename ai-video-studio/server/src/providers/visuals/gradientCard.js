@@ -43,7 +43,7 @@ export async function generateGradientCard({ headline, styleId, sceneIndex, aspe
     'noise=alls=6:allf=t+u',
     `drawtext=fontfile=${FONT}:textfile=${textFile}:fontsize=${fontSize}:fontcolor=white@0.96:` +
       `borderw=3:bordercolor=black@0.35:line_spacing=${Math.round(fontSize * 0.35)}:` +
-      `x=(w-text_w)/2:y=(h-text_h)/2:text_align=center`,
+      `x=(w-text_w)/2:y=(h-text_h)/2`,
     `drawbox=x=(w-${Math.round(card.w * 0.14)})/2:y=(h/2)+${Math.round(fontSize * 1.6)}:` +
       `w=${Math.round(card.w * 0.14)}:h=6:color=white@0.75:t=fill`,
   ].join(',');

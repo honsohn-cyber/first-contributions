@@ -69,7 +69,7 @@ export async function buildSceneClip({
     `drawbox=x=0:y=${boxY}:w=${output.w}:h=${boxHeight}:color=black@0.45:t=fill`,
     `drawtext=fontfile=${FONT}:textfile=${captionFile}:fontsize=${fontSize}:fontcolor=white:` +
       `borderw=2:bordercolor=black@0.6:line_spacing=${Math.round(fontSize * 0.3)}:` +
-      `x=(w-text_w)/2:y=${boxY + Math.round(fontSize * 0.55)}:text_align=center`,
+      `x=(w-text_w)/2:y=${boxY + Math.round(fontSize * 0.55)}`,
     `fade=t=in:st=0:d=${FADE_IN}`,
     `fade=t=out:st=${fadeOutStart.toFixed(2)}:d=${FADE_OUT}`,
   ].join(',');
