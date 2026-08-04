@@ -1,4 +1,12 @@
-export default function Header({ aiEnabled }) {
+function badgeText(aiEnabled, voiceProvider) {
+  const voicePart = voiceProvider === 'elevenlabs' ? 'ElevenLabs-Stimmen' : 'Offline-Stimmen';
+  const imagePart = aiEnabled ? 'KI-Bilder' : 'Grafik-Karten';
+  return `${voicePart} & ${imagePart} aktiv`;
+}
+
+export default function Header({ aiEnabled, voiceProvider }) {
+  const isEnhanced = aiEnabled || voiceProvider === 'elevenlabs';
+
   return (
     <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
@@ -19,13 +27,13 @@ export default function Header({ aiEnabled }) {
       </div>
       <span
         className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium ${
-          aiEnabled
+          isEnhanced
             ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
             : 'border-amber-500/30 bg-amber-500/10 text-amber-300'
         }`}
       >
-        <span className={`h-1.5 w-1.5 rounded-full ${aiEnabled ? 'bg-emerald-400' : 'bg-amber-400'}`} />
-        {aiEnabled ? 'KI-Bilder & KI-Stimmen aktiv' : 'Offline-Modus: kostenlose Stimmen & Grafik-Karten'}
+        <span className={`h-1.5 w-1.5 rounded-full ${isEnhanced ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+        {badgeText(aiEnabled, voiceProvider)}
       </span>
     </header>
   );

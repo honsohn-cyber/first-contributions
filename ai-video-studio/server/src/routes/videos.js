@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createJob, getJob, listJobs, onJobUpdate } from '../lib/store.js';
 import { resolveAspect } from '../lib/resolutions.js';
 import { runPipeline } from '../pipeline/buildVideo.js';
-import { VOICES, resolveVoice } from '../providers/tts/index.js';
+import { getVoiceCatalog, resolveVoice, activeVoiceProvider } from '../providers/tts/index.js';
 import { STYLES, resolveStyle } from '../providers/visuals/index.js';
 import { hasOpenAI } from '../config.js';
 
@@ -14,7 +14,8 @@ const ASPECTS = ['16:9', '9:16', '1:1'];
 
 router.get('/meta', (req, res) => {
   res.json({
-    voices: VOICES.map((v) => ({ id: v.id, label: v.label })),
+    voices: getVoiceCatalog().map((v) => ({ id: v.id, label: v.label })),
+    voiceProvider: activeVoiceProvider(),
     styles: STYLES.map((s) => ({ id: s.id, label: s.label })),
     aspects: ASPECTS,
     aiEnabled: hasOpenAI(),

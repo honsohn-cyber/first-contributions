@@ -125,6 +125,9 @@ export default function ScriptForm({ meta, onSubmit, submitting, disabled }) {
               <option key={v.id} value={v.id}>{v.label}</option>
             ))}
           </select>
+          <p className="mt-1.5 text-[11px] text-slate-500">
+            {meta.voiceProvider === 'elevenlabs' ? 'Stimmen von ElevenLabs' : 'Offline-Stimme (espeak)'}
+          </p>
         </div>
         <div>
           <label htmlFor="language" className="mb-2 block text-sm font-semibold text-slate-200">

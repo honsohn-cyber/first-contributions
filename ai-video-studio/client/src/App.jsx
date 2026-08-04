@@ -78,7 +78,7 @@ export default function App() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      <Header aiEnabled={meta.aiEnabled} />
+      <Header aiEnabled={meta.aiEnabled} voiceProvider={meta.voiceProvider} />
 
       <div className="mt-8 grid grid-cols-3 gap-3 sm:mt-10">
         {FEATURES.map((f) => (
@@ -116,7 +116,8 @@ export default function App() {
       </main>
 
       <footer className="mt-16 border-t border-white/5 pt-6 text-center text-xs text-slate-600">
-        AI Video Studio — läuft vollständig lokal. {meta.aiEnabled ? '' : 'Offline-Modus ohne API-Key aktiv.'}
+        AI Video Studio — läuft vollständig lokal.{' '}
+        {meta.aiEnabled || meta.voiceProvider === 'elevenlabs' ? '' : 'Offline-Modus ohne API-Key aktiv.'}
       </footer>
     </div>
   );

@@ -21,14 +21,30 @@ und eingebrannte Untertitel — als fertige MP4-Datei zum Herunterladen.
 
 Die App funktioniert **vollständig ohne API-Keys** (Offline-Modus):
 
-| | Ohne `OPENAI_API_KEY` | Mit `OPENAI_API_KEY` |
+| | Ohne API-Key | Mit API-Key |
 |---|---|---|
-| Sprachausgabe | `espeak-ng` (lokal, kostenlos) | OpenAI TTS (`gpt-4o-mini-tts`) |
-| Szenenbilder | Generierte Gradient-Titelkarten (via ffmpeg) | KI-generierte Illustrationen (`gpt-image-1`) |
+| Sprachausgabe | `espeak-ng` (lokal, kostenlos), 4 Stimmen | **ElevenLabs** (`ELEVENLABS_API_KEY`), 8 Stimmen zur Auswahl |
+| Szenenbilder | Generierte Gradient-Titelkarten (via ffmpeg) | KI-generierte Illustrationen (`OPENAI_API_KEY`, `gpt-image-1`) |
 
-Ist ein `OPENAI_API_KEY` gesetzt, schaltet die App automatisch in den KI-Modus um —
-ohne weitere Konfiguration. Schlägt ein KI-Bildaufruf fehl, fällt die jeweilige Szene
-automatisch auf die Gradient-Karte zurück, statt das ganze Video abzubrechen.
+Sind die Keys gesetzt, schaltet die App automatisch in den jeweiligen KI-Modus um —
+ohne weitere Konfiguration. Schlägt ein KI-Aufruf zur Laufzeit fehl (z. B. Netzwerkfehler
+oder ungültiger Key), fällt die betroffene Szene automatisch auf die Offline-Variante
+zurück, statt das ganze Video abzubrechen.
+
+### ElevenLabs-Stimmen
+
+Mit gesetztem `ELEVENLABS_API_KEY` stehen im Dropdown „Stimme" acht kuratierte
+ElevenLabs-Stimmen zur Auswahl (mehrsprachiges Modell `eleven_multilingual_v2`,
+funktioniert für Deutsch und Englisch):
+
+- **Rachel** — klar & ruhig (weiblich)
+- **Domi** — selbstbewusst & energisch (weiblich)
+- **Bella** — sanft & warm (weiblich)
+- **Elli** — jugendlich & lebendig (weiblich)
+- **Antoni** — ausgewogen & angenehm (männlich)
+- **Josh** — tief & seriös (männlich)
+- **Arnold** — kraftvoll & markant (männlich)
+- **Adam** — neutral & vielseitig (männlich)
 
 ## Voraussetzungen
 
@@ -48,7 +64,7 @@ sudo apt-get install -y ffmpeg espeak-ng fonts-dejavu-core
 ```bash
 # Backend
 cd server
-cp .env.example .env   # optional: OPENAI_API_KEY eintragen
+cp .env.example .env   # optional: ELEVENLABS_API_KEY und/oder OPENAI_API_KEY eintragen
 npm install
 npm start               # läuft auf http://localhost:8787
 
@@ -76,7 +92,7 @@ ai-video-studio/
 │   ├── src/
 │   │   ├── lib/             Script-Parser, ffmpeg-Runner, Job-Store, Auflösungen
 │   │   ├── providers/
-│   │   │   ├── tts/         OpenAI-TTS + espeak-ng-Fallback
+│   │   │   ├── tts/         ElevenLabs-Stimmen + espeak-ng-Fallback
 │   │   │   └── visuals/     OpenAI-Bilder + Gradient-Karten-Fallback
 │   │   ├── pipeline/        Szenen-Rendering (Ken-Burns, Untertitel), Concat, Orchestrierung
 │   │   └── routes/          REST-API + Server-Sent-Events für Live-Fortschritt
