@@ -33,9 +33,11 @@ zurück, statt das ganze Video abzubrechen.
 
 ### ElevenLabs-Stimmen
 
-Mit gesetztem `ELEVENLABS_API_KEY` stehen im Dropdown „Stimme" acht kuratierte
-ElevenLabs-Stimmen zur Auswahl (mehrsprachiges Modell `eleven_multilingual_v2`,
-funktioniert für Deutsch und Englisch):
+Mit gesetztem `ELEVENLABS_API_KEY` stehen bei der Stimmenauswahl acht kuratierte
+ElevenLabs-Stimmen zur Verfügung (mehrsprachiges Modell `eleven_multilingual_v2`,
+funktioniert für Deutsch und Englisch). Jede Stimme hat einen kleinen Play-Button
+zum Anhören einer kurzen Sprachprobe, bevor man sie auswählt — das erzeugte Sample
+wird pro Stimme einmalig generiert und danach auf dem Server zwischengespeichert:
 
 - **Rachel** — klar & ruhig (weiblich)
 - **Domi** — selbstbewusst & energisch (weiblich)
@@ -106,6 +108,7 @@ ai-video-studio/
 ## API (Kurzüberblick)
 
 - `GET /api/videos/meta` — verfügbare Stimmen, Stile, Formate, KI-Status
+- `GET /api/videos/voices/:voiceId/preview` — kurze Sprachprobe der Stimme (gecacht)
 - `POST /api/videos` — neuen Video-Job anlegen `{ script, aspect, styleId, voiceId, language }`
 - `GET /api/videos` — Liste aller Jobs
 - `GET /api/videos/:id` — Job-Details

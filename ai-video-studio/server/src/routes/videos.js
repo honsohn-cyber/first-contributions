@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createJob, getJob, listJobs, onJobUpdate } from '../lib/store.js';
 import { resolveAspect } from '../lib/resolutions.js';
 import { runPipeline } from '../pipeline/buildVideo.js';
-import { getVoiceCatalog, resolveVoice, activeVoiceProvider } from '../providers/tts/index.js';
+import { getVoiceCatalog, resolveVoice, activeVoiceProvider, synthesizePreview } from '../providers/tts/index.js';
 import { STYLES, resolveStyle } from '../providers/visuals/index.js';
 import { hasOpenAI } from '../config.js';
 
@@ -20,6 +20,15 @@ router.get('/meta', (req, res) => {
     aspects: ASPECTS,
     aiEnabled: hasOpenAI(),
   });
+});
+
+router.get('/voices/:voiceId/preview', async (req, res) => {
+  try {
+    const file = await synthesizePreview(req.params.voiceId);
+    res.sendFile(file, { maxAge: '1d' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 function summarize(job) {

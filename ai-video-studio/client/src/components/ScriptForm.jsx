@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import VoicePicker from './VoicePicker.jsx';
 
 const ASPECT_INFO = {
   '16:9': { label: 'Querformat', hint: 'YouTube, Web', shape: 'h-6 w-10' },
@@ -110,40 +111,27 @@ export default function ScriptForm({ meta, onSubmit, submitting, disabled }) {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="voice" className="mb-2 block text-sm font-semibold text-slate-200">
-            Stimme
-          </label>
-          <select
-            id="voice"
-            value={voiceId}
-            onChange={(e) => setVoiceId(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-black/30 p-2.5 text-sm text-slate-100 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-          >
-            {meta.voices.map((v) => (
-              <option key={v.id} value={v.id}>{v.label}</option>
-            ))}
-          </select>
-          <p className="mt-1.5 text-[11px] text-slate-500">
-            {meta.voiceProvider === 'elevenlabs' ? 'Stimmen von ElevenLabs' : 'Offline-Stimme (espeak)'}
-          </p>
-        </div>
-        <div>
-          <label htmlFor="language" className="mb-2 block text-sm font-semibold text-slate-200">
-            Sprache
-          </label>
-          <select
-            id="language"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-black/30 p-2.5 text-sm text-slate-100 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-          >
-            <option value="auto">Automatisch erkennen</option>
-            <option value="de">Deutsch</option>
-            <option value="en">Englisch</option>
-          </select>
-        </div>
+      <VoicePicker
+        voices={meta.voices}
+        value={voiceId}
+        onChange={setVoiceId}
+        provider={meta.voiceProvider}
+      />
+
+      <div>
+        <label htmlFor="language" className="mb-2 block text-sm font-semibold text-slate-200">
+          Sprache
+        </label>
+        <select
+          id="language"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="w-full rounded-xl border border-white/10 bg-black/30 p-2.5 text-sm text-slate-100 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:w-1/2"
+        >
+          <option value="auto">Automatisch erkennen</option>
+          <option value="de">Deutsch</option>
+          <option value="en">Englisch</option>
+        </select>
       </div>
 
       <button
