@@ -42,6 +42,21 @@
     );
   });
 
+  const safetyNotesBox = document.getElementById("safety-notes");
+  oil.anwendung
+    .map((name) => categorySafetyNote(slugify(name)))
+    .filter(Boolean)
+    .forEach((note) => {
+      safetyNotesBox.insertAdjacentHTML(
+        "beforeend",
+        '<div class="safety-note"><strong>⚠ ' +
+          escapeHtml(note.title) +
+          "</strong><p>" +
+          escapeHtml(note.text) +
+          "</p></div>"
+      );
+    });
+
   const related = relatedOils(oil, 6);
   const relatedSection = document.getElementById("related-section");
   const relatedGrid = document.getElementById("related-grid");

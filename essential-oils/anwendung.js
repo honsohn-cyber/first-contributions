@@ -37,5 +37,15 @@
     oils.length === 1 ? "1 passendes Öl" : oils.length + " passende Öle";
   document.getElementById("tag-oils-grid").innerHTML = oils.map((oil) => oilCardHTML(oil)).join("");
 
+  const note = typ === "anwendung" ? categorySafetyNote(slug) : null;
+  const safetyNote = document.getElementById("safety-note");
+  if (note) {
+    document.getElementById("safety-note-title").textContent = "⚠ " + note.title;
+    document.getElementById("safety-note-text").textContent = note.text;
+    safetyNote.hidden = false;
+  } else {
+    safetyNote.hidden = true;
+  }
+
   category.hidden = false;
 })();

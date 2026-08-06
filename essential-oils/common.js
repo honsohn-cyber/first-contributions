@@ -110,3 +110,44 @@ function tagChipHTML(tag) {
     "</a>"
   );
 }
+
+/**
+ * Zusätzliche Erste-Hilfe-/Sicherheitshinweise für besonders sensible
+ * Anwendungs-Kategorien (Wunden, Verbrennungen, Hautausschlag). Werden auf
+ * der jeweiligen Kategorieseite als auffälliges Banner über den Ölen
+ * angezeigt. Schlüssel = Slug der Anwendungs-Kategorie.
+ */
+const CATEGORY_SAFETY_NOTES = {
+  "kleine-wunden-schuerfwunden": {
+    title: "Erste Hilfe geht vor",
+    text:
+      "Wunde zuerst reinigen (klares Wasser, ggf. mildes Wunddesinfektionsmittel) und bei Bedarf steril abdecken. " +
+      "Ätherische Öle nur stark verdünnt und nur auf bereits gereinigter, nicht mehr blutender, oberflächlicher Haut " +
+      "ringsum bzw. auf verschorften Stellen anwenden – niemals unverdünnt und niemals direkt in eine offene, tiefe " +
+      "oder stark blutende Wunde. Bei tiefen Wunden, Bisswunden, Anzeichen einer Entzündung (Rötung, Schwellung, " +
+      "Eiter, Fieber), fehlendem Tetanusschutz oder wenn die Wunde nicht heilt: ärztliche Hilfe aufsuchen. " +
+      "Ätherische Öle ersetzen keine notwendige Wundversorgung."
+  },
+  "verbrennungen-leicht": {
+    title: "Erst kühlen, dann (wenn überhaupt) Öl",
+    text:
+      "Verbrennung sofort 10–20 Minuten mit kühlem (nicht eiskaltem) Wasser kühlen – das ist die wichtigste Maßnahme. " +
+      "Ätherische Öle niemals auf eine frische, offene, nässende oder großflächige Verbrennung oder auf Brandblasen " +
+      "auftragen. Traditionell genannte Öle wie Lavendel oder Immortelle werden – wenn überhaupt – frühestens nach " +
+      "dem Kühlen, stark verdünnt und nur auf bereits abgekühlter, geschlossener Haut eingesetzt. Bei Verbrennungen " +
+      "ab Grad 2, großflächigen Verbrennungen, Verbrennungen im Gesicht/an Gelenken/Genitalien, bei Kindern, oder " +
+      "starken Schmerzen: sofort ärztliche/notärztliche Hilfe aufsuchen."
+  },
+  "hautausschlag-hautreizung": {
+    title: "Erst testen, Ursache im Blick behalten",
+    text:
+      "Vor jeder Anwendung eine Verträglichkeitsprobe (Patch-Test) an einer kleinen, gesunden Hautstelle machen und " +
+      "das Öl gut in einem neutralen Pflanzenöl verdünnen. Bei großflächigem, nässendem, sich ausbreitendem oder " +
+      "nicht eindeutig zuordenbarem Ausschlag, bei Fieber, starkem Juckreiz, Anzeichen einer allergischen Reaktion " +
+      "oder bei Säuglingen/Kleinkindern: ärztlichen Rat einholen, statt selbst zu behandeln."
+  }
+};
+
+function categorySafetyNote(slug) {
+  return CATEGORY_SAFETY_NOTES[slug] || null;
+}

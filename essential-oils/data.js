@@ -21,10 +21,19 @@ const OILS = [
     name: "Lavendel",
     botanisch: "Lavandula angustifolia",
     familie: "Lippenblütler",
-    eigenschaften: ["beruhigend", "entspannend", "schmerzlindernd", "entzündungshemmend"],
-    anwendung: ["Einschlafen & Schlaf", "Stress & Entspannung", "Hautpflege", "Kopfschmerzen", "Wäsche & Textilien"],
-    beschreibung: "Der Klassiker unter den ätherischen Ölen: blumig-krautig im Duft, wirkt ausgleichend auf Nerven und Gemüt. Ein paar Tropfen auf einem Duftsäckchen im Kleiderschrank halten zudem klassisch Motten fern.",
-    hinweise: "Sehr gut verträglich; für Diffusor, Bad oder verdünnt (2–3 %) auf der Haut geeignet."
+    eigenschaften: ["beruhigend", "entspannend", "schmerzlindernd", "entzündungshemmend", "wundheilungsfördernd"],
+    anwendung: [
+      "Einschlafen & Schlaf",
+      "Stress & Entspannung",
+      "Hautpflege",
+      "Kopfschmerzen",
+      "Wäsche & Textilien",
+      "Kleine Wunden & Schürfwunden",
+      "Verbrennungen (leicht)",
+      "Hautausschlag & Hautreizung"
+    ],
+    beschreibung: "Der Klassiker unter den ätherischen Ölen: blumig-krautig im Duft, wirkt ausgleichend auf Nerven und Gemüt. Ein paar Tropfen auf einem Duftsäckchen im Kleiderschrank halten zudem klassisch Motten fern. In der traditionellen Hausmittel-Praxis das mit am häufigsten genannte Öl bei kleinen, bereits abgekühlten Verbrennungen sowie zur Nachsorge kleiner, sauberer Hautverletzungen – dabei immer stark verdünnt und nie auf frischer/offener Wunde.",
+    hinweise: "Sehr gut verträglich; für Diffusor, Bad oder verdünnt (2–3 %) auf der Haut geeignet. Bei Verbrennungen und Wunden erst die Erste-Hilfe-Maßnahmen befolgen (siehe Hinweiskasten auf den jeweiligen Kategorieseiten) – Lavendelöl allenfalls stark verdünnt und erst auf bereits abgekühlter, geschlossener bzw. sauberer Haut, nie auf offenen oder nässenden Stellen."
   },
   {
     name: "Pfefferminze",
@@ -40,9 +49,15 @@ const OILS = [
     botanisch: "Melaleuca alternifolia",
     familie: "Myrtengewächse",
     eigenschaften: ["antibakteriell", "antiviral", "pilzhemmend", "hautklärend"],
-    anwendung: ["Hautpflege", "Erkältung & Atemwege", "Haushalt & Reinigung"],
-    beschreibung: "Kräftig-medizinischer Duft mit ausgeprägter reinigender Wirkung. Beliebt bei unreiner Haut sowie – ein paar Tropfen im Putzwasser – gegen Schimmel und Gerüche in Bad und Waschmaschine.",
-    hinweise: "Punktuell stark verdünnt anwenden, kann bei empfindlicher Haut reizen; nicht großflächig unverdünnt nutzen."
+    anwendung: [
+      "Hautpflege",
+      "Erkältung & Atemwege",
+      "Haushalt & Reinigung",
+      "Kleine Wunden & Schürfwunden",
+      "Hautausschlag & Hautreizung"
+    ],
+    beschreibung: "Kräftig-medizinischer Duft mit ausgeprägter reinigender Wirkung. Beliebt bei unreiner Haut sowie – ein paar Tropfen im Putzwasser – gegen Schimmel und Gerüche in Bad und Waschmaschine. Traditionell auch punktuell (stark verdünnt) bei kleinen, bereits gereinigten Schürfwunden, Insektenstichen oder juckenden Hautstellen genutzt.",
+    hinweise: "Punktuell stark verdünnt anwenden, kann bei empfindlicher Haut reizen; nicht großflächig und nicht unverdünnt nutzen. Nicht in offene/tiefe Wunden einbringen – nur auf bereits gereinigter, intakter Haut ringsum bzw. auf verschorften Stellen."
   },
   {
     name: "Eukalyptus",
@@ -121,18 +136,18 @@ const OILS = [
     botanisch: "Chamaemelum nobile",
     familie: "Korbblütler",
     eigenschaften: ["beruhigend", "entzündungshemmend", "krampflösend"],
-    anwendung: ["Einschlafen & Schlaf", "Stress & Entspannung", "Hautpflege"],
-    beschreibung: "Mild-apfelartiger, süßer Duft mit sehr sanfter, beruhigender Wirkung – auch für Kinder und empfindliche Haut geeignet.",
-    hinweise: "Bei Korbblütler-Allergie (z. B. Kamille, Ringelblume) vorsichtig testen."
+    anwendung: ["Einschlafen & Schlaf", "Stress & Entspannung", "Hautpflege", "Hautausschlag & Hautreizung"],
+    beschreibung: "Mild-apfelartiger, süßer Duft mit sehr sanfter, beruhigender Wirkung – auch für Kinder und empfindliche Haut geeignet. Gilt als eine der mildesten Optionen bei gereizter, juckender oder empfindlicher Haut.",
+    hinweise: "Bei Korbblütler-Allergie (z. B. Kamille, Ringelblume) vorsichtig testen. Bei großflächigem, unklarem oder sich ausbreitendem Ausschlag sowie bei Kindern unter 2 Jahren vorab ärztlichen Rat einholen."
   },
   {
     name: "Echte Kamille (Blau)",
     botanisch: "Matricaria chamomilla",
     familie: "Korbblütler",
-    eigenschaften: ["entzündungshemmend", "beruhigend", "hautklärend"],
-    anwendung: ["Hautpflege", "Einschlafen & Schlaf"],
-    beschreibung: "Intensiv-krautiger Duft mit tiefblauer Farbe durch den Inhaltsstoff Chamazulen. Stärker entzündungshemmend als die Römische Kamille, klassisch bei gereizter Haut.",
-    hinweise: "Bei Korbblütler-Allergie vorsichtig testen; kann Textilien blau färben."
+    eigenschaften: ["entzündungshemmend", "beruhigend", "hautklärend", "wundheilungsfördernd"],
+    anwendung: ["Hautpflege", "Einschlafen & Schlaf", "Hautausschlag & Hautreizung", "Kleine Wunden & Schürfwunden"],
+    beschreibung: "Intensiv-krautiger Duft mit tiefblauer Farbe durch den Inhaltsstoff Chamazulen. Stärker entzündungshemmend als die Römische Kamille, klassisch bei gereizter Haut, Ekzem-neigender Haut und zur Unterstützung der Hautberuhigung nach kleinen, bereits versorgten Verletzungen.",
+    hinweise: "Bei Korbblütler-Allergie vorsichtig testen; kann Textilien blau färben. Nur stark verdünnt und nicht auf offenen Wunden anwenden; bei nässendem oder sich ausbreitendem Ausschlag ärztlichen Rat einholen."
   },
   {
     name: "Bergamotte",
@@ -165,10 +180,10 @@ const OILS = [
     name: "Myrrhe",
     botanisch: "Commiphora myrrha",
     familie: "Balsambaumgewächse",
-    eigenschaften: ["entzündungshemmend", "erdend", "antibakteriell"],
-    anwendung: ["Mundpflege", "Hautpflege"],
-    beschreibung: "Herb-harziger, warmer Duft, traditionell zur Mundpflege sowie bei rissiger, strapazierter Haut eingesetzt.",
-    hinweise: "Nicht in der Schwangerschaft; sehr zähflüssig, vor Gebrauch leicht anwärmen."
+    eigenschaften: ["entzündungshemmend", "erdend", "antibakteriell", "wundheilungsfördernd"],
+    anwendung: ["Mundpflege", "Hautpflege", "Kleine Wunden & Schürfwunden"],
+    beschreibung: "Herb-harziger, warmer Duft, traditionell zur Mundpflege sowie bei rissiger, strapazierter Haut und zur Unterstützung der Hautregeneration nach kleinen, bereits gereinigten Hautverletzungen eingesetzt.",
+    hinweise: "Nicht in der Schwangerschaft; sehr zähflüssig, vor Gebrauch leicht anwärmen. Nur stark verdünnt und nie auf frischer, offener oder tiefer Wunde anwenden."
   },
   {
     name: "Ylang-Ylang",
@@ -184,9 +199,9 @@ const OILS = [
     botanisch: "Pelargonium graveolens",
     familie: "Storchschnabelgewächse",
     eigenschaften: ["ausgleichend", "hautklärend", "entzündungshemmend", "insektenabweisend"],
-    anwendung: ["Hautpflege", "Stress & Entspannung", "Insektenschutz"],
-    beschreibung: "Rosig-krautiger Duft, der hormonell und emotional ausgleichend wirkt. Gilt zudem als eine der angenehmer riechenden natürlichen Alternativen im Mückenschutz.",
-    hinweise: "Gut hautverträglich, dennoch verdünnt anwenden."
+    anwendung: ["Hautpflege", "Stress & Entspannung", "Insektenschutz", "Hautausschlag & Hautreizung"],
+    beschreibung: "Rosig-krautiger Duft, der hormonell und emotional ausgleichend wirkt. Gilt zudem als eine der angenehmer riechenden natürlichen Alternativen im Mückenschutz und wird traditionell bei gereizter Haut eingesetzt.",
+    hinweise: "Gut hautverträglich, dennoch verdünnt anwenden; bei stärkeren oder unklaren Hautreizungen ärztlichen Rat einholen."
   },
   {
     name: "Wacholder",
@@ -399,10 +414,10 @@ const OILS = [
     name: "Immortelle (Currykraut)",
     botanisch: "Helichrysum italicum",
     familie: "Korbblütler",
-    eigenschaften: ["entzündungshemmend", "hautklärend", "durchblutungsfördernd"],
-    anwendung: ["Hautpflege"],
-    beschreibung: "Warm-honigartiger, würziger Duft. In der Hautpflege sehr geschätzt, u. a. zur Unterstützung des Hautbilds bei kleinen Blessuren.",
-    hinweise: "Bei Korbblütler-Allergie vorsichtig testen; hochpreisig, auf Reinheit achten."
+    eigenschaften: ["entzündungshemmend", "hautklärend", "durchblutungsfördernd", "wundheilungsfördernd"],
+    anwendung: ["Hautpflege", "Kleine Wunden & Schürfwunden", "Verbrennungen (leicht)"],
+    beschreibung: "Warm-honigartiger, würziger Duft. In der Aromatherapie das wohl bekannteste Öl zur Unterstützung des Hautbilds bei blauen Flecken sowie – meist in Mischung mit Lavendel – bei kleinen, bereits abgekühlten Verbrennungen und oberflächlichen Hautverletzungen.",
+    hinweise: "Bei Korbblütler-Allergie vorsichtig testen; hochpreisig, auf Reinheit achten. Nur stark verdünnt und nie auf frischer, offener Wunde oder unversorgter Verbrennung anwenden."
   },
   {
     name: "Patchouli",

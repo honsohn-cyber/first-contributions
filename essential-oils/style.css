@@ -12,6 +12,9 @@
   --shadow: 0 1px 3px rgba(43, 38, 32, 0.08);
   --warn-bg: #fff6e9;
   --warn-border: #f0d9a8;
+  --critical-bg: #fdecec;
+  --critical-border: #eab3ae;
+  --critical-text: #7a2a20;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,6 +32,9 @@
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     --warn-bg: #332a17;
     --warn-border: #5c4a25;
+    --critical-bg: #3a201d;
+    --critical-border: #6b3833;
+    --critical-text: #f5b8b0;
   }
 }
 
@@ -368,6 +374,28 @@ header.page-header p {
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--text-muted);
+}
+
+.safety-note {
+  background: var(--critical-bg);
+  border: 1px solid var(--critical-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0 1.25rem;
+  color: var(--critical-text);
+}
+
+.safety-note strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.safety-note p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text);
 }
 
 .empty-state {

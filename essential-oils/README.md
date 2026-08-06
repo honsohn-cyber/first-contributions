@@ -2,11 +2,24 @@
 
 Eine kleine, statische "Wiki"-Seite für ätherische Öle: eine zentrale Suche,
 Artikelseiten pro Öl und Kategorieseiten pro Anwendungsbereich/Eigenschaft –
-ähnlich wie bei Wikipedia. Deckt sowohl klassische Wellness-Anwendungen
-(Schlaf, Stress, Hautpflege …) als auch den praktischen Einsatz im Haushalt
-ab (Reinigung, Insektenschutz, Mottenschutz in der Wäsche …).
+ähnlich wie bei Wikipedia. Deckt klassische Wellness-Anwendungen (Schlaf,
+Stress, Hautpflege …), den praktischen Einsatz im Haushalt (Reinigung,
+Insektenschutz, Mottenschutz in der Wäsche …) sowie – mit deutlich
+sichtbaren Erste-Hilfe-/Sicherheitshinweisen – die traditionelle Nutzung
+bei kleinen Wunden, leichten Verbrennungen und Hautausschlag ab.
 
 47 Öle sind aktuell erfasst.
+
+### Sicherheitshinweise bei Wunden, Verbrennungen & Hautausschlag
+
+Die Kategorien „Kleine Wunden & Schürfwunden“, „Verbrennungen (leicht)“ und
+„Hautausschlag & Hautreizung“ zeigen auf ihrer Kategorieseite (und auf der
+Artikelseite jedes betroffenen Öls) automatisch ein auffälliges
+Erste-Hilfe-Banner (`categorySafetyNote()` in `common.js`), z. B. „bei
+Verbrennungen zuerst kühlen“ oder „bei tiefen/entzündeten Wunden zum Arzt“.
+Ziel ist es, traditionelles Hausmittel-Wissen abzubilden, ohne den
+Eindruck zu erwecken, ätherische Öle seien ein Ersatz für Erste Hilfe oder
+ärztliche Behandlung.
 
 ## Nutzung
 
