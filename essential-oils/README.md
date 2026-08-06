@@ -1,0 +1,86 @@
+# Ätherische Öle – Nachschlagewerk
+
+Eine kleine, statische "Wiki"-Seite für ätherische Öle: eine zentrale Suche,
+Artikelseiten pro Öl und Kategorieseiten pro Anwendungsbereich/Eigenschaft –
+ähnlich wie bei Wikipedia. Deckt sowohl klassische Wellness-Anwendungen
+(Schlaf, Stress, Hautpflege …) als auch den praktischen Einsatz im Haushalt
+ab (Reinigung, Insektenschutz, Mottenschutz in der Wäsche …).
+
+47 Öle sind aktuell erfasst.
+
+## Nutzung
+
+Kein Build, kein Server nötig – einfach `index.html` im Browser öffnen:
+
+```bash
+open essential-oils/index.html      # macOS
+xdg-open essential-oils/index.html  # Linux
+start essential-oils/index.html     # Windows
+```
+
+Oder für die Entwicklung mit Live-Reload einen einfachen lokalen Server
+starten, z. B. `npx http-server essential-oils`.
+
+## Wie die Suche funktioniert
+
+- **Ein Öl suchen** (z. B. „Lavendel“ oder „Lavendelöl“): Gibt es genau
+  einen Treffer, springt <kbd>Enter</kbd> direkt zur Artikelseite des Öls
+  (`oel.html?id=lavendel`) – wie ein Wikipedia-Artikel mit Steckbrief,
+  Beschreibung, Sicherheitshinweisen und „Ähnlichen Ölen“.
+- **Einen Anwendungsbereich suchen** (z. B. „Erkältung“ oder „Haushalt“):
+  Gibt es genau einen eindeutigen Treffer, springt <kbd>Enter</kbd> zur
+  Kategorieseite (`anwendung.html?typ=anwendung&id=erkaeltung-atemwege`),
+  die alle passenden Öle auflistet.
+- Bei mehreren möglichen Treffern (z. B. mehrdeutige Suchbegriffe) werden
+  passende Öle und Kategorien direkt unterhalb der Suche als Ergebnisliste
+  angezeigt – man muss nicht erst Enter drücken.
+- Ohne Sucheingabe zeigt die Startseite Stöber-Bereiche: alle
+  Anwendungsbereiche und Eigenschaften als klickbare Kategorien sowie eine
+  alphabetische Liste aller Öle.
+
+## Struktur
+
+| Datei/Seite      | Zweck                                                                 |
+| ----------------- | ---------------------------------------------------------------------- |
+| `index.html`      | Startseite: Suche + Stöbern (Kategorien, A–Z-Liste)                   |
+| `search.js`        | Such- und Navigationslogik der Startseite                            |
+| `oel.html`         | Artikelseite-Vorlage für ein einzelnes Öl (liest `?id=<slug>`)        |
+| `oel.js`           | Rendert Steckbrief, Beschreibung, Hinweise und „Ähnliche Öle“         |
+| `anwendung.html`   | Kategorieseite-Vorlage für einen Anwendungsbereich/eine Eigenschaft (liest `?typ=` & `?id=<slug>`) |
+| `anwendung.js`     | Rendert alle Öle, die zu der Kategorie passen                        |
+| `data.js`          | Datensatz aller Öle (`OILS`-Array)                                    |
+| `common.js`        | Gemeinsame Hilfsfunktionen: Slugs, Suche, Kartenrendering             |
+| `style.css`        | Layout & Design (hell/dunkel automatisch je nach Systemeinstellung)   |
+
+Artikel- und Kategorieseiten sind Vorlagen, die ihren Inhalt anhand des
+URL-Parameters `id` (bzw. `typ` + `id`) aus `data.js` rendern – es gibt also
+keine 47 einzelnen HTML-Dateien, sondern zwei Vorlagen für beliebig viele
+Öle/Kategorien.
+
+## Eigene Öle ergänzen
+
+Neue Einträge einfach dem `OILS`-Array in `data.js` hinzufügen. Jeder
+Eintrag braucht:
+
+```js
+{
+  name: "…",
+  botanisch: "…",
+  familie: "…",
+  eigenschaften: ["…", "…"],
+  anwendung: ["…", "…"],
+  beschreibung: "…",
+  hinweise: "…"
+}
+```
+
+Neue Werte in `eigenschaften` bzw. `anwendung` erscheinen automatisch als
+neue Kategorien/Filter – es muss nichts weiter angepasst werden. Die
+Artikel- und Kategorieseiten (URL-Slugs) werden automatisch aus dem Namen
+erzeugt (`slugify()` in `common.js`).
+
+## Hinweis
+
+Die Inhalte beschreiben traditionelle/volkskundliche und
+haushaltspraktische Nutzung ätherischer Öle und ersetzen keine
+medizinische oder homöopathische Fachberatung.
