@@ -221,6 +221,29 @@ header.page-header p {
   text-decoration: underline;
 }
 
+.hero {
+  width: 100%;
+  aspect-ratio: 900 / 260;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  background: var(--chip-bg);
+}
+
+.hero svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 500px) {
+  .hero {
+    aspect-ratio: 900 / 340;
+    border-radius: 12px;
+  }
+}
+
 .article-header {
   margin-bottom: 1.5rem;
 }

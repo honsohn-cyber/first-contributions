@@ -17,6 +17,8 @@
   document.title = oil.name + " – Ätherische Öle";
   document.getElementById("page-title").textContent = document.title;
 
+  document.getElementById("oil-hero").innerHTML = generateHeroSVG(oil);
+
   document.getElementById("oil-name").textContent = oil.name;
   document.getElementById("oil-botanisch").textContent = oil.botanisch + " · " + oil.familie;
   document.getElementById("info-botanisch").textContent = oil.botanisch;

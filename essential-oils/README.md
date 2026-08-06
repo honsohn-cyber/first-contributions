@@ -58,7 +58,8 @@ starten, z. B. `npx http-server essential-oils`.
 | `index.html`      | Startseite: Suche + Stöbern (Kategorien, A–Z-Liste)                   |
 | `search.js`        | Such- und Navigationslogik der Startseite                            |
 | `oel.html`         | Artikelseite-Vorlage für ein einzelnes Öl (liest `?id=<slug>`)        |
-| `oel.js`           | Rendert Steckbrief, Beschreibung, Hinweise und „Ähnliche Öle“         |
+| `oel.js`           | Rendert Titelbild, Steckbrief, Beschreibung, Hinweise und „Ähnliche Öle“ |
+| `hero.js`           | Generiert das Titelbild jeder Artikelseite als Inline-SVG            |
 | `anwendung.html`   | Kategorieseite-Vorlage für einen Anwendungsbereich/eine Eigenschaft (liest `?typ=` & `?id=<slug>`) |
 | `anwendung.js`     | Rendert alle Öle, die zu der Kategorie passen                        |
 | `data.js`          | Datensatz aller Öle (`OILS`-Array)                                    |
@@ -69,6 +70,19 @@ Artikel- und Kategorieseiten sind Vorlagen, die ihren Inhalt anhand des
 URL-Parameters `id` (bzw. `typ` + `id`) aus `data.js` rendern – es gibt also
 keine 47 einzelnen HTML-Dateien, sondern zwei Vorlagen für beliebig viele
 Öle/Kategorien.
+
+## Titelbilder
+
+Jede Artikelseite (`oel.html`) bekommt ein passendes Titelbild – statt eines
+externen Fotos wird es als Inline-SVG direkt im Browser erzeugt
+(`generateHeroSVG()` in `hero.js`). Farbe und Motiv richten sich nach der
+Pflanzenfamilie (z. B. lila Blütenähre für Lippenblütler wie Lavendel,
+orange Zitrusscheibe für Rautengewächse, grüner Nadelzweig für
+Kieferngewächse, siehe `FAMILY_THEME`); Position, Drehung und Anzahl der
+Motiv-Wiederholungen werden aus dem Namen des Öls deterministisch erzeugt,
+sodass jedes Öl trotz gleicher Familie ein eigenes, aber stabiles Bild
+bekommt. Vorteil gegenüber echten Fotos: keine Internetabhängigkeit, keine
+kaputten Links, keine Lizenzfragen.
 
 ## Eigene Öle ergänzen
 
